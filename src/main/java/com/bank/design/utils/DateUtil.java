@@ -1,0 +1,23 @@
+package com.bank.design.utils;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+public class DateUtil {
+
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+    public static String formatToString(LocalDateTime dateTime) {
+        if (dateTime == null){
+            return null;
+        }
+        return dateTime.format(FORMATTER);
+    }
+
+    public static LocalDateTime formatToLocalDateTime(String dateTimeStr) {
+        if (dateTimeStr == null || dateTimeStr.isBlank()){
+            return null;
+        }
+        return LocalDateTime.parse(dateTimeStr, FORMATTER);
+    }
+}
