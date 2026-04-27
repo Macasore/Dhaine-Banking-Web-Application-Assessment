@@ -21,4 +21,6 @@ public class DepositRequest {
     @DecimalMin(value = "1.00", inclusive = true, message = "Amount must be between ₦1.00 and ₦1,000,000.00.")
     @DecimalMax(value = "1000000.00", inclusive = true, message = "Amount must be between ₦1.00 and ₦1,000,000.00.")
     private BigDecimal amount;
+
+    private String narration;
 }

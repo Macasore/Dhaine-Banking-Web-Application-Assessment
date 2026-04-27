@@ -36,11 +36,6 @@ public class TransferServiceImpl implements TransferService {
     @Override
     public BaseResponse<String> deposit(DepositRequest request) {
         try {
-            String username = getAuthenticatedUsername();
-            User user = jsonUtil.getUser(request.getAccountNumber());
-
-            validateAccountIsForUser(username, user.getAccountName());
-
             Transaction latestTransaction = getLatestTransaction(request.getAccountNumber())
                     .orElse(new Transaction());
 
@@ -54,6 +49,7 @@ public class TransferServiceImpl implements TransferService {
                             ? latestTransaction.getNewBalance()
                             : BigDecimal.ZERO)
                     .transactionType(TransactionType.CREDIT)
+                    .narration(request.getNarration())
                     .createdAt(DateUtil.formatToString(LocalDateTime.now()))
                     .build();
 
@@ -103,6 +99,7 @@ public class TransferServiceImpl implements TransferService {
             Transaction newTransaction = Transaction.builder()
                     .accountNumber(request.getAccountNumber())
                     .amount(request.getAmount())
+                    .narration(request.getNarration())
                     .newBalance(balanceAfterWithdrawal)
                     .previousBalance(currentBalance)
                     .transactionType(TransactionType.DEBIT)

@@ -15,5 +15,5 @@ public class AccountDetails{
     private String accountNumber;
 
     @JsonProperty("initialDeposit")
-    private Double initialDeposit;
+    private BigDecimal initialDeposit;
     }

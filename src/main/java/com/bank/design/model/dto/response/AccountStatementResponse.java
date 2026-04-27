@@ -19,8 +19,11 @@ public class AccountStatementResponse {
     @JsonProperty("transactionType")
     private TransactionType transactionType;
 
-    @JsonProperty("accountNumber")
-    private String accountNumber;
+    @JsonProperty("narration")
+    private String narration;
+
+    @JsonProperty("amount")
+    private BigDecimal amount;
 
     @JsonProperty("accountBalance")
     private BigDecimal accountBalance;

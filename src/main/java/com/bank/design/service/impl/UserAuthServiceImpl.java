@@ -52,12 +52,13 @@ public class UserAuthServiceImpl implements UserAuthService {
 
            User userObject = createUserObject(createAccountRequest);
            jsonUtil.createUserObject(userObject);
-            if (createAccountRequest.getInitialDeposit() > 0){
+            if (createAccountRequest.getInitialDeposit().compareTo(BigDecimal.ZERO) > 0){
                 Transaction newTransaction = Transaction.builder()
                         .accountNumber(userObject.getAccountDetails().getAccountNumber())
-                        .amount(BigDecimal.valueOf(createAccountRequest.getInitialDeposit()))
-                        .newBalance(BigDecimal.valueOf(createAccountRequest.getInitialDeposit()))
+                        .amount(createAccountRequest.getInitialDeposit())
+                        .newBalance(createAccountRequest.getInitialDeposit())
                         .previousBalance(BigDecimal.ZERO)
+                        .narration("Initial Deposit")
                         .transactionType(TransactionType.CREDIT)
                         .createdAt(DateUtil.formatToString(LocalDateTime.now()))
                         .build();
@@ -103,7 +104,7 @@ public class UserAuthServiceImpl implements UserAuthService {
             log.info("Logged in successful");
             return BaseResponse.success(loginResponse);
         } catch (BadCredentialsException e){
-            throw new GenericErrorCodeException("Invalid username or password", ErrorCode.BAD_REQUEST, HttpStatus.BAD_REQUEST);
+            throw new GenericErrorCodeException("Invalid username or password", ErrorCode.UNAUTHORIZED, HttpStatus.UNAUTHORIZED);
         } catch (GenericErrorCodeException e) {
             throw e;
         }

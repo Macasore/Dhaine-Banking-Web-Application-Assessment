@@ -23,4 +23,6 @@ public class WithdrawalRequest {
     @NotNull(message = "amount is required.")
     @DecimalMin(value = "1.00", inclusive = true, message = "Amount must be at least ₦1.00 .")
     private BigDecimal amount;
+
+    private String narration;
 }
