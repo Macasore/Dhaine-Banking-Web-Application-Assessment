@@ -52,11 +52,11 @@ public class UserAuthServiceImpl implements UserAuthService {
 
            User userObject = createUserObject(createAccountRequest);
            jsonUtil.createUserObject(userObject);
-            if (createAccountRequest.getInitialDeposit() > 0){
+            if (createAccountRequest.getInitialDeposit().compareTo(BigDecimal.ZERO) > 0){
                 Transaction newTransaction = Transaction.builder()
                         .accountNumber(userObject.getAccountDetails().getAccountNumber())
-                        .amount(BigDecimal.valueOf(createAccountRequest.getInitialDeposit()))
-                        .newBalance(BigDecimal.valueOf(createAccountRequest.getInitialDeposit()))
+                        .amount(createAccountRequest.getInitialDeposit())
+                        .newBalance(createAccountRequest.getInitialDeposit())
                         .previousBalance(BigDecimal.ZERO)
                         .narration("Initial Deposit")
                         .transactionType(TransactionType.CREDIT)

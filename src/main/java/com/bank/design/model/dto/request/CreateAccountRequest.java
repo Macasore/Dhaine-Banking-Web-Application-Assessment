@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @Builder
 @Getter
 @Setter
@@ -22,6 +24,5 @@ public class CreateAccountRequest {
     private String confirmPassword;
 
     @NotNull(message = "Initial deposit required")
-    @DecimalMin(value = "500.00", inclusive = true, message = "initial deposit must be at least 500")
-    private Double initialDeposit;
+    private BigDecimal initialDeposit;
 }
