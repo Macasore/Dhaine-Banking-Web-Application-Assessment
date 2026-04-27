@@ -69,7 +69,8 @@ public class AccountServiceImpl implements AccountService {
                     .map(t -> AccountStatementResponse.builder()
                             .transactionDate(t.getCreatedAt())
                             .transactionType(t.getTransactionType())
-                            .accountNumber(t.getAccountNumber())
+                            .narration(t.getNarration())
+                            .amount(t.getAmount())
                             .accountBalance(t.getNewBalance())
                             .build())
                     .toList();

@@ -26,6 +26,9 @@ public class Transaction {
     @JsonProperty("amount")
     private BigDecimal amount;
 
+    @JsonProperty("narration")
+    private String narration;
+
     @JsonProperty("transactionType")
     private TransactionType transactionType;
 

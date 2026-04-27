@@ -58,6 +58,7 @@ public class UserAuthServiceImpl implements UserAuthService {
                         .amount(BigDecimal.valueOf(createAccountRequest.getInitialDeposit()))
                         .newBalance(BigDecimal.valueOf(createAccountRequest.getInitialDeposit()))
                         .previousBalance(BigDecimal.ZERO)
+                        .narration("Initial Deposit")
                         .transactionType(TransactionType.CREDIT)
                         .createdAt(DateUtil.formatToString(LocalDateTime.now()))
                         .build();

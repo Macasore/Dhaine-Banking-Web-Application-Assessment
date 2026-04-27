@@ -49,6 +49,7 @@ public class TransferServiceImpl implements TransferService {
                             ? latestTransaction.getNewBalance()
                             : BigDecimal.ZERO)
                     .transactionType(TransactionType.CREDIT)
+                    .narration(request.getNarration())
                     .createdAt(DateUtil.formatToString(LocalDateTime.now()))
                     .build();
 
@@ -98,6 +99,7 @@ public class TransferServiceImpl implements TransferService {
             Transaction newTransaction = Transaction.builder()
                     .accountNumber(request.getAccountNumber())
                     .amount(request.getAmount())
+                    .narration(request.getNarration())
                     .newBalance(balanceAfterWithdrawal)
                     .previousBalance(currentBalance)
                     .transactionType(TransactionType.DEBIT)
