@@ -49,4 +49,13 @@ public class BaseResponse<T> {
                 .build();
     }
 
+    public static <T> BaseResponse<T> error(int errorCode, String errorMessage, T data){
+        return BaseResponse.<T>builder()
+                .responseCode(errorCode)
+                .success(false)
+                .message(errorMessage)
+                .data(data)
+                .build();
+    }
+
 }
