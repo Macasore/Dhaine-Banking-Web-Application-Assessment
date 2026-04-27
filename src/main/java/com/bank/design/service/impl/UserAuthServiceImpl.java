@@ -104,7 +104,7 @@ public class UserAuthServiceImpl implements UserAuthService {
             log.info("Logged in successful");
             return BaseResponse.success(loginResponse);
         } catch (BadCredentialsException e){
-            throw new GenericErrorCodeException("Invalid username or password", ErrorCode.BAD_REQUEST, HttpStatus.BAD_REQUEST);
+            throw new GenericErrorCodeException("Invalid username or password", ErrorCode.UNAUTHORIZED, HttpStatus.UNAUTHORIZED);
         } catch (GenericErrorCodeException e) {
             throw e;
         }
