@@ -36,11 +36,6 @@ public class TransferServiceImpl implements TransferService {
     @Override
     public BaseResponse<String> deposit(DepositRequest request) {
         try {
-            String username = getAuthenticatedUsername();
-            User user = jsonUtil.getUser(request.getAccountNumber());
-
-            validateAccountIsForUser(username, user.getAccountName());
-
             Transaction latestTransaction = getLatestTransaction(request.getAccountNumber())
                     .orElse(new Transaction());
 
